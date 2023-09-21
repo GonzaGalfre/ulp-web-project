@@ -1,0 +1,22 @@
+[
+  {
+    "score": 8,
+    "timeTaken": 33,
+    "playerName": "juan"
+  },
+  {
+    "score": 10,
+    "timeTaken": 12,
+    "playerName": "jorge"
+  },
+  {
+    "score": 8,
+    "timeTaken": 23,
+    "playerName": "carlos"
+  },
+  {
+    "score": 4,
+    "timeTaken": 44,
+    "playerName": "carlos junior"
+  }
+]

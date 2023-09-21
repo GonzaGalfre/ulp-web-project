@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tabla de puntuaciones más altas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>Tabla de puntuaciones más altas</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre del jugador</th>
+          <th scope="col">Puntuación</th>
+          <th scope="col">Tiempo (segundos)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% leaderboard.forEach((entry, index) => { %>
+          <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><%= entry.playerName %></td>
+            <td><%= entry.score %></td>
+            <td><%= entry.timeTaken %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <a href="/" class="btn btn-primary">Volver a la pantalla inicial</a>
+  </div>
+</body>
+</html>
