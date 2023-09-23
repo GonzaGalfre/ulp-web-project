@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-// Function to fetch all countries from the RestCountries API
+
 const fetchCountries = async () => {
   try {
     const response = await axios.get('https://restcountries.com/v3.1/all');
@@ -11,14 +11,15 @@ const fetchCountries = async () => {
   }
 };
 
-// Function to generate a random question
 const generateQuestion = (countries) => {
-  const randomIndex = Math.floor(Math.random() * countries.length);
-  const correctCountry = countries[randomIndex];
-  //console.log('Correct country object:', correctCountry);
+  let randomIndex = Math.floor(Math.random() * countries.length);
+  let correctCountry = countries[randomIndex];
 
-
-  // Generate 3 random wrong options
+  // Skip Macau
+  while (correctCountry.name === 'Macau') {
+    randomIndex = Math.floor(Math.random() * countries.length);
+    correctCountry = countries[randomIndex];
+  }
   const wrongOptions = [];
   while (wrongOptions.length < 3) {
     const randomWrongIndex = Math.floor(Math.random() * countries.length);
@@ -28,21 +29,19 @@ const generateQuestion = (countries) => {
     }
   }
 
-  // Decide question type (capital or flag)
   const questionType = Math.random() > 0.5 ? 'capital' : 'flag';
 
   let question = '';
   let options = [];
 
   if (questionType === 'capital') {
-    question = `What is the capital of ${correctCountry.name.common}?`;
+    question = `¿Cuál es la capital de ${correctCountry.name.common}?`;
     options = [correctCountry.capital, ...wrongOptions.map(opt => opt.capital)];
   } else {
-    question = `Which country does this flag belong to? <img src="${correctCountry.flags.png}" alt="Flag">`;//as
+    question = `¿De qué país es esta bandera? <br><br> <img src="${correctCountry.flags.png}">`;//as
     options = [correctCountry.name.common, ...wrongOptions.map(opt => opt.name.common)];
   }
 
-  // Shuffle options
   options = options.sort(() => Math.random() - 0.5);
 
   return {
@@ -52,7 +51,6 @@ const generateQuestion = (countries) => {
   };
 };
 
-// Example usage
 const startGameLogic = async () => {
   const countries = await fetchCountries();
   const questions = [];
@@ -61,8 +59,6 @@ const startGameLogic = async () => {
     const question = generateQuestion(countries);
     questions.push(question);
   }
-//a
-  //console.log(questions);
   return questions;
 };
 

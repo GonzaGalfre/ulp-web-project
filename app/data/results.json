@@ -1,22 +1,17 @@
 [
   {
-    "score": 8,
-    "timeTaken": 33,
-    "playerName": "juan"
-  },
-  {
-    "score": 10,
-    "timeTaken": 12,
-    "playerName": "jorge"
-  },
-  {
-    "score": 8,
+    "score": 2,
     "timeTaken": 23,
-    "playerName": "carlos"
+    "playerName": "Gonza"
   },
   {
     "score": 4,
-    "timeTaken": 44,
-    "playerName": "carlos junior"
+    "timeTaken": 24,
+    "playerName": "Gonza"
+  },
+  {
+    "score": 3,
+    "timeTaken": 18,
+    "playerName": "Carlos"
   }
 ]

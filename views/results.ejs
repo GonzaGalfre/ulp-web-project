@@ -3,23 +3,71 @@
 <head>
   <title>Resultados</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+     @font-face {
+    font-family: 'Neon';
+    src: url('/fonts/neon2.ttf');}
+    body {
+      margin-top: 160px;
+      background-image: url('/img/bg4.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: 'Neon', sans-serif;
+    }
+    h1, h2{
+      color: white;
+    }
+    .btn-square {
+      width: 400px;
+      font-size: 40px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      background-color: transparent !important;
+      box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00eeff, 0 0 20px #00eeff, 0 0 25px #00eeff, 0 0 30px #00eeff, 0 0 35px #00eeff !important;
+      margin-bottom: 20px; /* Add space between buttons */
+    }
+    .btn-square:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00eeff, 0 0 40px #00eeff, 0 0 50px #00eeff, 0 0 60px #00eeff, 0 0 70px #00eeff !important;
+    }
+    .button-container {
+      display: flex;
+      flex-direction: column; /* Align buttons vertically */
+      align-items: center; /* Center buttons horizontally */
+      margin-top: 20px;
+    }
+    #playerName {
+  font-size: 24px; /* Increase font size */
+  padding: 10px 20px; /* Add padding */
+  width: 100%; /* Full width */
+  max-width: 400px; /* Maximum width */
+  margin: 20px auto; /* Centering and margin */
+  background-color: transparent; /* Remove background */
+  border: none; /* Remove default border */
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00eeff, 0 0 20px #00eeff, 0 0 25px #00eeff, 0 0 30px #00eeff, 0 0 35px #00eeff; /* Glowing border */
+}
+
+  </style>
 </head>
 <body>
-  <div class="container mt-5">
-    <h1>Tu puntuación: <%= score %> / 10</h1>
-    <h2>Tiempo tomado: <%= timeTaken %> segundos</h2>
-    <input type="text" id="playerName" placeholder="Ingresa tu nombre">
-
-    <!-- Botón para volver a la pantalla inicial -->
-    <a href="/" class="btn btn-primary">Volver a la pantalla inicial</a>
-
-    <!-- Botón para postear resultados en la base de datos -->
-    <button class="btn btn-success" onclick="postResults()">Guardar resultados</button>
+  <div class="text-center">
+    <h1>Your score was: <%= score %> / 10</h1>
+    <h2>You took <%= timeTaken %> seconds to beat the game</h2>
+    <input type="text" id="playerName" placeholder="Enter your name">
+    <div class="button-container">
+      <a href="/" class="btn btn-primary btn-square">Inicio</a>
+      <button class="btn btn-success btn-square" onclick="postResults()">Guardar</button>
+    </div>
   </div>
 
   <script>
   function postResults() {
-    const playerName = document.getElementById('playerName').value; // Obtener el nombre del jugador
+    const playerName = document.getElementById('playerName').value;
     fetch('/save-results', {
       method: 'POST',
       headers: {
@@ -34,7 +82,9 @@
     .then(response => response.json())
     .then(data => {
       if (data.success) {
-        alert('Resultados guardados con éxito.');
+        setTimeout(()=> {
+        window.location.href = '/leaderboard'
+      }, 1000);
       } else {
         alert('Hubo un error al guardar los resultados.');
       }
