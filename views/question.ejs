@@ -68,10 +68,10 @@
 }
 
     .bg-success {
-      background-color: rgba(0, 255, 0, 0.95) !important;
+      background-color: rgba(123, 255, 0, 0.95) !important;
     }
     .bg-danger {
-      background-color: rgba(255, 0, 0, 0.95) !important;
+      background-color: rgb(140, 0, 0) !important;
     }
     .btn-outline-primary:focus, .btn-outline-primary:active {
     background-color: transparent !important;
@@ -153,16 +153,12 @@
         }
       });
   
-      console.log('Setting timeout to move to the next question or results page.');
-      console.log('Current questionId:', questionId);
       setTimeout(() => {
-        console.log('Timeout completed. Navigating...');
         if (questionId >= 10) {
           console.log('Navigating to results page.');
 
           window.location.href = '/game/results';
         } else {
-          console.log(`Navigating to next question: ${questionId + 1}`);
 
           window.location.href = `/game/question/${questionId + 1}`;
         }

@@ -16,7 +16,7 @@ const generateQuestion = (countries) => {
   let correctCountry = countries[randomIndex];
 
   // Skip Macau
-  while (correctCountry.name === 'Macau') {
+  while (randomIndex === 48) {
     randomIndex = Math.floor(Math.random() * countries.length);
     correctCountry = countries[randomIndex];
   }
@@ -35,10 +35,10 @@ const generateQuestion = (countries) => {
   let options = [];
 
   if (questionType === 'capital') {
-    question = `¿Cuál es la capital de ${correctCountry.name.common}?`;
+    question = `What's the capital city of ${correctCountry.name.common}?`;
     options = [correctCountry.capital, ...wrongOptions.map(opt => opt.capital)];
   } else {
-    question = `¿De qué país es esta bandera? <br><br> <img src="${correctCountry.flags.png}">`;//as
+    question = `Which country does this flag belong to? <br><br> <img src="${correctCountry.flags.png}">`;//as
     options = [correctCountry.name.common, ...wrongOptions.map(opt => opt.name.common)];
   }
 
